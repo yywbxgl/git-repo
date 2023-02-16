@@ -2095,8 +2095,8 @@ class Project(object):
                    ssh_proxy=None,
                    force_sync=False,
                    clone_filter=None,
-                   retry_fetches=2,
-                   retry_sleep_initial_sec=4.0,
+                   retry_fetches=1,
+                   retry_sleep_initial_sec=1.0,
                    retry_exp_factor=2.0):
     is_sha1 = False
     tag_name = None
@@ -2264,7 +2264,7 @@ class Project(object):
     cmd.extend(spec)
 
     # At least one retry minimum due to git remote prune.
-    retry_fetches = max(retry_fetches, 2)
+    retry_fetches = max(retry_fetches, 1)
     retry_cur_sleep = retry_sleep_initial_sec
     ok = prune_tried = False
     for try_n in range(retry_fetches):
